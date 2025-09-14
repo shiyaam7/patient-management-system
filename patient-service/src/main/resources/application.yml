@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: patient-service   # Name of the microservice (used in logs, discovery, etc.)
+
+  h2:
+    console.path: /h2-console   # Enable H2 database web console at http://localhost:4000/h2-console
+
+  datasource:
+    url: jdbc:h2:mem:testdb     # Use an in-memory H2 database named "testdb"
+    driver-class-name: org.h2.Driver  # H2 JDBC driver to connect to database
+    username: admin_viewer      # Username to log into H2 database
+    password: password          # Password for the H2 database
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect  # Hibernate SQL dialect for H2
+    hibernate:
+      ddl-auto: update          # Auto-update database schema when entity changes (creates/updates tables)
+
+  sql:
+    init:
+      mode: always              # Always run schema.sql/data.sql files on startup (if present)
+
+  show-sql: true
+
+server:
+  port: 4000                    # Application will run on port 4000 (default is 8080)
+
