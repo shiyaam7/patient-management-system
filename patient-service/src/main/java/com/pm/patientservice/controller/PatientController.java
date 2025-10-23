@@ -34,13 +34,14 @@ public class PatientController {
     @PostMapping
     @Operation(summary = "Create a new Patient")
     public ResponseEntity<PatientResponseDTO> createPatient(
-            @Validated({Default.class, PatientRequestDTO.Create.class}) @RequestBody PatientRequestDTO patientRequestDTO) {
+            @Validated({Default.class, PatientRequestDTO.Create.class})
+            @RequestBody PatientRequestDTO patientRequestDTO) {
 
-        PatientResponseDTO patientResponseDTO = patientService.createPatient(
-                patientRequestDTO);
-
+        PatientResponseDTO patientResponseDTO = patientService.createPatient(patientRequestDTO);
         return ResponseEntity.ok().body(patientResponseDTO);
     }
+
+
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a new Patient")

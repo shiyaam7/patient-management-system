@@ -1,8 +1,23 @@
 spring:
   application:
-    name: patient-service   # Name of the microservice (used in logs, discovery, etc.)
+    name: patient-service   # Name of the microservice
 
-# commented out,
+  kafka:
+    # Kafka bootstrap servers: address of the Kafka broker to connect to
+    # 'kafka' = Docker container name, '9092' = Kafka broker port inside Docker network
+    bootstrap-servers: kafka:9092
+
+    producer:
+      # Serializer for the message key
+      # Converts the key (String) into bytes that Kafka can send
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+      # Serializer for the message value
+      # Converts the message value (byte[] from Protobuf) into bytes Kafka can send
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+
+
+  # commented out,
   # Since we have defined everything as environment variable
   # in patient-service docker
 
@@ -31,4 +46,8 @@ spring:
 
 server:
   port: 4000                    # Application will run on port 4000 (default is 8080)
+
+logging:
+  level:
+    root=INFO:
 
