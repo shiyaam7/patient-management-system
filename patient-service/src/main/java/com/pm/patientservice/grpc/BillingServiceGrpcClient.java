@@ -100,6 +100,7 @@ public class BillingServiceGrpcClient {
                 .build();
 
         // Make the gRPC call using the blocking stub and get the response
+        // // gRPC automatically serializes this request to bytes internally
         BillingResponse response = blockingStub.createBillingAccount(request);
 
         // Log the response received from the Billing Service
